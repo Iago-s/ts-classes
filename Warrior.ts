@@ -10,6 +10,10 @@ class Warrior extends Personagem {
       this._forca = Util.randomizar(100, 1_000);
       this._agilidade = Util.randomizar(100, 1_000);
     }
+
+    public atacar(): string {
+      return `Ataque do guerreiro`
+    }
 }
 
 export default Warrior;
