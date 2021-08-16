@@ -1,54 +1,66 @@
 class Personagem {
   constructor(
-    public nome: string,
-    public vida: number,
-    public energia: number,
-    public ataque: number,
-    public defesa: number,
+    private _nome: string,
+    private _vida: number,
+    private _energia: number,
+    private _ataque: number,
+    private _defesa: number,
   ) { }
 
-  status(): string {
+  public get getNome(): string {
+    return this._nome;
+  }
+
+  public set setNome(nome: string) {
+    this._nome = nome;
+  }
+
+  public status(): string {
     return (
       'Guerreiro: \n' +
       '\nNome: ' +
-      this.nome +
-      ('\nEnergia: ' + this.energia.toFixed(1)) +
-      ('\nAtaque: ' + this.ataque.toFixed(1)) +
-      ('\nDefesa: ' + this.defesa.toFixed(1))
+      this._nome +
+      ('\nEnergia: ' + this._energia.toFixed(1)) +
+      ('\nAtaque: ' + this._ataque.toFixed(1)) +
+      ('\nDefesa: ' + this._defesa.toFixed(1))
     );
   }
 
-  treinarAtacar(): void {
-    this.ataque += Math.random() * 7;
-    this.energia -= Math.random() * 10;
-    if (this.defesa > 100) {
-      this.defesa = 0;
+  public treinarAtacar(): void {
+    this._ataque += this.numeroAleatorio(7);
+    this._energia -= this.numeroAleatorio(10);
+    if (this._defesa > 100) {
+      this._defesa = 0;
     }
   }
 
-  treinarDefesa(): void {
-    this.defesa += Math.random() * 5;
-    this.energia -= Math.random() * 10;
-    if (this.defesa > 100) {
-      this.defesa = 0;
+  public treinarDefesa(): void {
+    this._defesa += this.numeroAleatorio(5);
+    this._energia -= this.numeroAleatorio(10);
+    if (this._defesa > 100) {
+      this._defesa = 0;
     }
   }
 
-  descansar(hour: number): void {
-    this.energia += hour * (Math.random() * 10);
-    if (this.energia > 100) {
-      this.energia = 100;
+  public descansar(hour: number): void {
+    this._energia += hour * this.numeroAleatorio(10);
+    if (this._energia > 100) {
+      this._energia = 100;
     }
   }
 
-  batalhar(): number {
-    let desgaste: number = Math.random() * 100;
-    this.energia -= desgaste;
+  public batalhar(): number {
+    let desgaste: number = this.numeroAleatorio(100);
+    this._energia -= desgaste;
     return desgaste;
   }
 
-  morreu(): boolean {
-    return this.energia < 0;
+  estarMorto(): boolean {
+    return this._energia < 0;
+  }
+
+  private numeroAleatorio(factor: number): number{
+    return Math.random() * factor;
   }
 };
 

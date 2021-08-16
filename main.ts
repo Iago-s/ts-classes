@@ -8,7 +8,7 @@ let option = 0;
 let person = new Personagem('Homem aranha', 100, 40, 20, 20);
 
 while (option != 9) {
-  console.log('+========= Personagem =============+');
+  console.log(`+========= Personagem ${person.getNome} =============+`);
   console.log('|1. Treinar ataque                 |');
   console.log('|2. Treinar defesa                 |');
   console.log('|3. Descansar                      |');
